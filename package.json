@@ -1,0 +1,24 @@
+{
+  "name": "openapi-error",
+  "version": "0.0.1",
+  "description": "Generating error classes from openapi schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha __test__.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuisEgoSum/openapi-error.git"
+  },
+  "author": "QuisEgoSum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/QuisEgoSum/openapi-error/issues"
+  },
+  "homepage": "https://github.com/QuisEgoSum/openapi-error#readme",
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "mocha": "^9.1.3",
+    "prettier": "^2.5.0"
+  }
+}
