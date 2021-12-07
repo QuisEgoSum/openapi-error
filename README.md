@@ -5,7 +5,8 @@ Generating error classes from openapi schemas.
 - [Create classes](#create-classes);
 - [Extends schemas](#extends-classes);
 - [Get HTTP code](#get-http-code);
-- [Get schemas](#get-schemas).
+- [Get schemas](#get-schemas);
+- [Instanceof error](#instanceof-error).
 
 
 ## Create classes
@@ -148,18 +149,14 @@ console.log(userNotExistsJSON)
 ## Get HTTP code
 
 ````javascript
-const userNotExistsError = new UserNotExistsError({userId: 1})
-
-console.log(UserNotExistsError.httpCode()) // 404
-console.log(userNotExistsError.httpCode()) // 404
+console.log(UserNotExistsError.httpCode()) // Static method
+console.log(new UserNotExistsError().httpCode()) // Instance method
 ````
 
 
 ## Get schemas
 
 ````javascript
-const userNotExistsError = new UserNotExistsError({userId: 1})
-
 console.log(UserNotExistsError.schema()) // Static method
 console.log(new UserNotExistsError().schema()) // Instance method
 
