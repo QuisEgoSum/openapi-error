@@ -1,6 +1,6 @@
 {
   "name": "openapi-error",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generating error classes from openapi schemas",
   "main": "index.js",
   "scripts": {

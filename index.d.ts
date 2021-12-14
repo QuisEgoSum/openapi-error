@@ -1,6 +1,4 @@
 
-export declare class BaseError extends Error {}
-
 export type CompileSchema = {
   title?: string,
   httpCode?: number,
@@ -68,7 +66,7 @@ type JSONError = {
   [key: string]: any
 }
 
-declare class CompiledError extends BaseError {
+export class BaseError extends Error {
   static schema(): Schema
 
   static httpCode(): number
