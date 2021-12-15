@@ -71,7 +71,7 @@ export class BaseError extends Error {
 
   static httpCode(): number
 
-  static extends(overrideSchema: CompileSchema, defaultValues: DefaultValues): typeof CompiledError
+  static extends(overrideSchema: CompileSchema, defaultValues: DefaultValues): typeof BaseError
 
   message: string
   code: number
@@ -88,5 +88,5 @@ export class BaseError extends Error {
 }
 
 
-export declare function compile(schema: CompileSchema, defaultValues: DefaultValues): typeof CompiledError
+export declare function compile(schema: CompileSchema, defaultValues: DefaultValues): typeof BaseError
 
