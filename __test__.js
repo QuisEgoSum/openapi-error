@@ -68,14 +68,17 @@ describe('Extends. Change title and default values', function() {
   it('Extends', function() {
     UserNotExistsError = EntityNotExistsError.extends(
       {
-        title: 'UserNotExistsError',
         properties: {
           userId: {
             type: 'integer'
           }
         }
       },
-      {code: 2000, message: 'test'}
+      {
+        code: 2000,
+        message: 'test',
+        error: 'UserNotExistsError'
+      }
     )
   })
   it('Instanceof Error', function() {

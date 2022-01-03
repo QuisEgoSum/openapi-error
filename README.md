@@ -20,7 +20,6 @@ const OpenApiError = require('openapi-error')
 
 const EntityNotExistsError = OpenApiError.compile(
   {
-    title: 'EntityNotExistsError',
     httpCode: 404,
     properties: {
       message: {
@@ -57,25 +56,13 @@ const EntityNotExistsError = OpenApiError.compile(
 )
 ````
 
-The scheme values `title`, `properties.error.default` and the default parameter values `error`
+The scheme value `properties.error.default` and the default parameter values `error`
 are interchangeable and overwrite each other:
 ````javascript
 //For the scheme above
 console.log(new EntityNotExistsError().error) // EntityNotExistsError
-  
-//Or
-const UnauthorizedError = OpenApiError.compile(
-  {
-    title: 'UnauthorizedError', // Replace default "DefaultError"
-    httpCode: 401
-  },
-  {
-    code: 2,
-    message: 'Unauthorized'
-  }
-)
-
-console.log(new UnauthorizedError().error) // UnauthorizedError
+//Schema title always corresponds to this value
+console.log(new EntityNotExistsError().title) // EntityNotExistsError
 
 // Or
 const ForbiddenError = OpenApiError.compile(
@@ -196,6 +183,7 @@ const userNotExistsError = new UserNotExistsError({userId: 1})
 
 console.log(userNotExistsError instanceof Error) // true
 console.log(userNotExistsError instanceof OpenApiError.BaseError) // true
+console.log(userNotExistsError instanceof EntityNotExistsError) // true
 ````
 
 

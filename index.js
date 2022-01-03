@@ -71,9 +71,7 @@ function createSchema(schema = {}, defaultValues = {}, overrideSchema = {}) {
     }
   }
 
-  const title = schema.title
-    || schema.properties.error.default
-    || 'DefaultError'
+  const title = schema.properties.error.default || 'DefaultError'
 
   schema.title = title
   schema.properties.error.default = title
