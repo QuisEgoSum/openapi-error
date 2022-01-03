@@ -84,6 +84,9 @@ describe('Extends. Change title and default values', function() {
   it('Instanceof BaseClass', function() {
     assert.equal(new UserNotExistsError() instanceof ApplicationError.BaseError, true)
   })
+  it('Instanceof pre class', function() {
+    assert.equal(new UserNotExistsError() instanceof EntityNotExistsError, true)
+  })
   it('Default instance values', function() {
     const instanceUserNotExistsError = new UserNotExistsError({userId: 1})
 

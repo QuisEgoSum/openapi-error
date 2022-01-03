@@ -116,10 +116,11 @@ function copyDefault(schema, sourceDefaultValues) {
 
 /**
  * @param {CompileSchema} schema
+ * @param {BaseError} extendClass
  * @param {Object<String, any>} defaultValues
  * @returns {typeof CompiledError}
  */
-function compile(schema = {}, defaultValues = {}) {
+function _compile(extendClass, schema = {}, defaultValues = {}) {
   schema = createSchema(schema, defaultValues)
   defaultValues = copyDefault(schema, defaultValues)
 
@@ -132,7 +133,7 @@ function compile(schema = {}, defaultValues = {}) {
   keys.delete('message')
   keys.delete('error')
 
-  class CompiledError extends BaseError {
+  class CompiledError extends extendClass {
     static schema() {
       return copyDeep(schema)
     }
@@ -146,7 +147,7 @@ function compile(schema = {}, defaultValues = {}) {
 
     static extends(overrideSchema, defaultValues) {
       schema.httpCode = httpCode
-      return compile(createSchema(schema, defaultValues, overrideSchema), defaultValues)
+      return _compile(CompiledError, createSchema(schema, defaultValues, overrideSchema), defaultValues)
     }
 
     constructor(error = {}) {
@@ -194,6 +195,15 @@ function compile(schema = {}, defaultValues = {}) {
   Object.defineProperty(CompiledError, 'name', {value: schema.title})
 
   return CompiledError
+}
+
+/**
+ * @param {CompileSchema} schema
+ * @param {Object<String, any>} defaultValues
+ * @returns {typeof CompiledError}
+ */
+function compile(schema = {}, defaultValues = {}) {
+  return _compile(BaseError, schema, defaultValues)
 }
 
 
